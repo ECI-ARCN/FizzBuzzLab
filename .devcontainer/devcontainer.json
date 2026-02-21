@@ -1,9 +1,21 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/java:17",
+  "name": "Java 21 Development",
+  "image": "mcr.microsoft.com/devcontainers/java:21",
   "features": {
-    "ghcr.io/devcontainers/features/java:1": {
-      "version": "17"
+    "ghcr.io/devcontainers/features/common-utils:1": {
+      "configureZshAsDefaultShell": true
     }
   },
-  "postCreateCommand": "sudo apt update && sudo apt install -y maven && mvn clean install"
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",      // Pack esencial (Language Support, Debugger, Maven, etc.)
+        "vscjava.vscode-java-test",      // Soporte para JUnit
+        "vscjava.vscode-maven",         // Interfaz dedicada para Maven
+        "checkstyle.checkstyle-vscode"   // Para mantener tu código limpio
+      ]
+    }
+  },
+  "postCreateCommand": "mvn -version",
+  "remoteUser": "vscode"
 }
